@@ -1,0 +1,10 @@
+<div class="form-check form-check-inline">
+    <input type="radio" [class.selected]="isOn" class="form-check-input" (click)="toggle(true)" value="yes"
+        [checked]="checked" name="newsletter">
+    <label class="form-check-label" for="inlineRadio1">YES</label>
+</div>
+<div class="form-check form-check-inline">
+    <input type="radio" [class.selected]="!isOn" class="form-check-input" (click)="toggle(false)" value="no"
+        [checked]="!checked" name="newsletter">
+    <label class="form-check-label" for="inlineRadio2">NO</label>
+</div>

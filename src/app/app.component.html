@@ -1,0 +1,100 @@
+<div class="container-sm">
+    <div class="col-md-8">
+        <div class="alert alert-info" style="margin-top: 5px;">
+            <h4>{{ title }}</h4>
+            <h5>ReactiveForm Angular</h5>
+        </div>
+
+        <form novalidate [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="col-md-12 typical">
+                <div class="col-md-6">
+                    <label> First Name</label>
+                    <input formControlName="firstname" class="form-control" placeholder="First Name" required>
+                    <small *ngIf="myForm.get('firstname').errors && myForm.get('firstname').errors.required"
+                        class="form-text text-danger">
+                        firstname is required
+                    </small>
+                </div>
+                <div class="col-md-6">
+                    <label> Last Name</label>
+                    <input formControlName="lastname" class="form-control" placeholder="Last Name" required>
+                    <small *ngIf="myForm.get('lastname').errors && myForm.get('lastname').errors.required"
+                        class="form-text text-danger">
+                        lastname is required
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-md-12 account">
+                <div formGroupName="account">
+
+                    <div class="col-md-6">
+                        <label> User Name </label>
+                        <input class="form-control" formControlName="username" placeholder="UserName" required>
+                        <small
+                            *ngIf="myForm.get('account.username').touched && myForm.get('account.username').errors && myForm.get('account.username').errors.required"
+                            class="form-text text-danger">
+                            user name is required
+                        </small>
+                    </div>
+                    <div class="col-md-6">
+                        <label> Password </label>
+                        <input class="form-control" formControlName="password" placeholder="Password" required>
+                        <small
+                            *ngIf="myForm.get('account.password').touched && myForm.get('account.password').errors && myForm.get('account.password').errors.required"
+                            class="form-text text-danger">
+                            password is required
+                        </small>
+
+                        <label> Confirm </label>
+                        <input class="form-control" formControlName="confirm" placeholder="Confirm">
+                        <small
+                            *ngIf="myForm.get('account.confirm').touched && myForm.get('account.confirm').errors && myForm.get('account.confirm').errors.required"
+                            class="form-text text-danger">
+                            confirm is required
+                        </small>
+                        <small
+                            *ngIf="myForm.get('account').errors && !myForm.get('account.confirm').errors && myForm.get('account').errors.notmatch"
+                            class="form-text text-danger">
+                            confirm is notmatch
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 other">
+                <div class="col-md-6">
+                    <label>do you need to subscription a newletters?</label>
+                    <app-switch-control formControlName="newsletter" checked="true"></app-switch-control>
+                    <small
+                        *ngIf="myForm.get('newsletter').touched && myForm.get('newsletter').errors && myForm.get('newsletter').errors.required"
+                        class="form-text text-danger">
+                        newsletter is required
+                    </small>
+                </div>
+                <div class="col-md-6">
+
+                    <label>please enter more note?</label>
+                    <app-address formControlName="note" required theValue="other"></app-address>
+                    <small
+                        *ngIf="myForm.get('note').touched && myForm.get('note').errors && myForm.get('note').errors.required"
+                        class="form-text text-danger">
+                        note is required
+                    </small>
+                </div>
+            </div>
+
+            <div class="button">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-md-12 alert alert-info">
+                <p>Form: {{ myForm.value | json }}</p>
+                <p>Form status: {{ myForm.status }}</p>
+                <p>account status: {{ myForm.get('account').errors | json }} </p>
+            </div>
+
+        </form>
+    </div>
+
+</div>
